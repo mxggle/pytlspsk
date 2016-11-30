@@ -1,5 +1,5 @@
-gravel-common-ssl
-==========
+TLSPSK Wrapper for Socket
+=========================
 
 OpenSSL TLS-PSK wrapper for Python
 
