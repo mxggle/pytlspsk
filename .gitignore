@@ -1,2 +1,7 @@
 *.pyc
 *.so
+/.project
+/.pydevproject
+/build/*
+/dist/*
+/MANIFEST
