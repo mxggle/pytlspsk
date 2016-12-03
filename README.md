@@ -3,12 +3,19 @@
 OpenSSL TLS-PSK wrapper for Python. Plain socket can be wrapped by pytlspsk wrapper to enable TLS-PSK channel.
 
 ### How to use it
-Use `ssl_psk.wrap_socket` instead of 'ssl.wrap_socket' with `psk` paramater set to PSK key string.
+Use `ssl_psk.wrap_socket` with `psk` paramater set to PSK key string.
 
 ```
+from pytlspsk import ssl_psk
+
+...
+...
+
 wrapper = ssl_psk.wrap_socket(sock, psk='really secret secret', ciphers='PSK-AES256-CBC-SHA',
                               ssl_version=ssl.PROTOCOL_TLSv1,
                               server_side=True)
+ >> sock: plain socket
+ >> psk: psk key for the channel
 ```
 
 ### how to run test cases
