@@ -18,8 +18,8 @@ class TLSPSKTest(unittest.TestCase):
         self.psk_sock = None
     
     def tearDown(self):
-        self.socket.shutdown(socket.SHUT_RDWR)
-        self.socket.close()
+        self.psk_sock.shutdown(socket.SHUT_RDWR)
+        self.psk_sock.close()
     
     def testServer(self):
         # initialize
@@ -29,23 +29,23 @@ class TLSPSKTest(unittest.TestCase):
         self.socket, _ = self.socket.accept()
         
         # wrap socket with TLS-PSK
-        self.psl_sock = ssl_psk.wrap_socket(self.socket, psk=self.psk, ciphers='PSK-AES256-CBC-SHA',
+        self.psk_sock = ssl_psk.wrap_socket(self.socket, psk=self.psk, ciphers='PSK-AES256-CBC-SHA',
                              ssl_version=ssl.PROTOCOL_TLSv1, server_side=True)
         
         # accept data from client
-        data = self.socket.recv(10)
-        self.socket.sendall(data.upper())
+        data = self.psk_sock.recv(10)
+        self.psk_sock.sendall(data.upper())
 
     def testClient(self):
         # initialize
         self.socket.connect(self.addr)
         
         # wrap socket with TLS-PSK
-        self.psl_sock = ssl_psk.wrap_socket(self.socket, psk=self.psk, ciphers='PSK-AES256-CBC-SHA',
+        self.psk_sock = ssl_psk.wrap_socket(self.socket, psk=self.psk, ciphers='PSK-AES256-CBC-SHA',
                              ssl_version=ssl.PROTOCOL_TLSv1, server_side=False)
         
-        self.socket.sendall(TEST_DATA)
-        data =self.socket.recv(10)
+        self.psk_sock.sendall(TEST_DATA)
+        data = self.psk_sock.recv(10)
         print('data: %s' % data)
         self.assertTrue(data == TEST_DATA.upper(), 'Test Failed')
 
