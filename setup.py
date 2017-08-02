@@ -1,9 +1,11 @@
-import os
-import subprocess
-from distutils.core import setup, Extension
+from setuptools import setup, Extension
 
-# build C extension
-subprocess.call(['make', '-C', 'pytlspsk'])
+
+sslpsk = Extension(
+  'pytlspsk/_ssl_psk',
+  sources = ['pytlspsk/ssl_psk.c'],
+  libraries = ['ssl'],
+)
 
 setup(
   name = 'pytlspsk',
@@ -22,5 +24,6 @@ setup(
       'Programming Language :: Python',
       'Programming Language :: C',
       ],
-  package_data={'pytlspsk': ['_ssl_psk.so']},
+  package_data = {'pytlspsk': ['_ssl_psk.so']},
+  ext_modules = [sslpsk]
 )
