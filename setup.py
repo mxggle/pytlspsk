@@ -18,7 +18,7 @@ setup(
   download_url = 'https://github.com/jigneshvasoya/pytlspsk/tarball/0.3', # I'll explain this in a second
   keywords = ['OpenSSL', 'TLS-PSK', 'tlspsk', 'security', 'ssl socket'], # arbitrary keywords
   classifiers = [
-      'Development Status :: 2 - Alpha',
+      'Development Status :: 2 - Pre-Alpha',
       'Intended Audience :: Developers',
       'License :: OSI Approved :: MIT License',
       'Programming Language :: Python',
